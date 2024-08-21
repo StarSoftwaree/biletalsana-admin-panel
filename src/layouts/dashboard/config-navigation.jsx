@@ -8,12 +8,42 @@ const icon = (name) => (
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'ana sayfa',
     path: '/dashboard',
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
+    title: 'biletler',
+    path: '/tickets',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'kargolar',
+    path: '/cargos',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'kasa',
+    path: '/case',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'raporlar',
+    path: '/reports',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'seferler',
+    path: '/trips',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'kullanıcılar',
+    path: '/users',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'bilgilerim',
     path: '/user',
     icon: icon('ic_user'),
   },
