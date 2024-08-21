@@ -1,51 +1,54 @@
-import SvgColor from '../../../src/components/svg-color';
+import HomeIcon from '@mui/icons-material/Home';
+import TicketIcon from '@mui/icons-material/ConfirmationNumber';
+import CargoIcon from '@mui/icons-material/LocalShipping';
+import CaseIcon from '@mui/icons-material/AccountBalanceWallet';
+import ReportsIcon from '@mui/icons-material/BarChart';
+import TripsIcon from '@mui/icons-material/DirectionsBus';
+import UsersIcon from '@mui/icons-material/People';
+import UserInfoIcon from '@mui/icons-material/Person';
 
 // ----------------------------------------------------------------------
-
-const icon = (name) => (
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
-);
 
 const navConfig = [
   {
     title: 'ana sayfa',
     path: '/dashboard',
-    icon: icon('ic_analytics'),
+    icon: <HomeIcon />,
   },
   {
     title: 'biletler',
     path: '/tickets',
-    icon: icon('ic_user'),
+    icon: <TicketIcon />,
   },
   {
     title: 'kargolar',
     path: '/cargos',
-    icon: icon('ic_user'),
+    icon: <CargoIcon />,
   },
   {
     title: 'kasa',
     path: '/case',
-    icon: icon('ic_user'),
+    icon: <CaseIcon />,
   },
   {
     title: 'raporlar',
     path: '/reports',
-    icon: icon('ic_user'),
+    icon: <ReportsIcon />,
   },
   {
     title: 'seferler',
     path: '/trips',
-    icon: icon('ic_user'),
+    icon: <TripsIcon />,
   },
   {
     title: 'kullanıcılar',
     path: '/users',
-    icon: icon('ic_user'),
+    icon: <UsersIcon />,
   },
   {
     title: 'bilgilerim',
     path: '/user',
-    icon: icon('ic_user'),
+    icon: <UserInfoIcon />,
   },
 ];
 
