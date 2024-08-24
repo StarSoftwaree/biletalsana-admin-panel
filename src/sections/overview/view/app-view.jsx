@@ -1,103 +1,179 @@
-import { faker } from '@faker-js/faker';
+import { useState } from 'react';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import Table from '@mui/material/Table';
+import Button from '@mui/material/Button';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TablePagination from '@mui/material/TablePagination';
 import Iconify from '../../../../src/components/iconify';
 
-import AppTasks from '../app-tasks';
-import AppOrderTimeline from '../app-order-timeline';
-import AppWidgetSummary from '../app-widget-summary';
-import AppTrafficBySite from '../app-traffic-by-site';
+import { trips } from '../../../../src/_mock/trips';
 
+
+import TableNoData from '../table-no-data';
+import TripTableRow from '../trip-table-row';
+import TripTableHead from '../trip-table-head';
+import TableEmptyRows from '../table-empty-rows';
+import TripTableToolbar from '../trip-table-toolbar';
+
+import Scrollbar from '../../../../src/components/scrollbar';
+import { emptyRows, applyFilter, getComparator } from '../utils';
 // ----------------------------------------------------------------------
 
 export default function AppView() {
-  return (
-    <Container maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Ahmet Eren, tekrardan hoşgeldin 👋
-      </Typography>
 
+  const [page, setPage] = useState(0);
+
+  const [order, setOrder] = useState('asc');
+
+  const [selected, setSelected] = useState([]);
+
+  const [orderBy, setOrderBy] = useState('name');
+
+  const [filterName, setFilterName] = useState('');
+
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleSort = (event, id) => {
+    const isAsc = orderBy === id && order === 'asc';
+    if (id !== '') {
+      setOrder(isAsc ? 'desc' : 'asc');
+      setOrderBy(id);
+    }
+  };
+
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = trips.map((n) => n.name);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleClick = (event, name) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected = [];
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setPage(0);
+    setRowsPerPage(parseInt(event.target.value, 10));
+  };
+
+  const handleFilterByName = (event) => {
+    setPage(0);
+    setFilterName(event.target.value);
+  };
+
+  const dataFiltered = applyFilter({
+    inputData: trips,
+    comparator: getComparator(order, orderBy),
+    filterName,
+  });
+
+  const notFound = !dataFiltered.length && !!filterName;
+  return (
+    <Container maxWidth="xl" >
       <Grid container spacing={3}>
 
-        <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            title="Yeni Kullanıcılar"
-            total={1352831}
-            color="success"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
-          />
-        </Grid>
+        <Container>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+            <Typography variant="h4">Yolculuklar</Typography>
 
-        <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            title="Raporlar"
-            total={234}
-            color="info"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
-          />
-        </Grid>
+            <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
+              Yeni Yolcu Ekle
+            </Button>
+          </Stack>
 
-        <Grid xs={12} md={6} lg={4}>
-          <AppOrderTimeline
-            title="Yolculuk Geçmişi"
-            list={[...Array(5)].map((_, index) => ({
-              id: faker.string.uuid(),
-              title: [
-                'Adana - Elazığ',
-                'Antalya - Elazığ',
-                'Trabzon - Elazığ',
-                'Manisa - Elazığ',
-                'İstanbul - Elazığ',
-              ][index],
-              type: `order${index + 1}`,
-              time: faker.date.past(),
-            }))}
-          />
-        </Grid>
+          <Card>
+            <TripTableToolbar
+              numSelected={selected.length}
+              filterName={filterName}
+              onFilterName={handleFilterByName}
+            />
 
-        <Grid xs={12} md={6} lg={4}>
-          <AppTrafficBySite
-            title="Siteler Üzerindeki Trafik"
-            list={[
-              {
-                name: 'Facebook',
-                value: 323234,
-                icon: <Iconify icon="eva:facebook-fill" color="#1877F2" width={32} />,
-              },
-              {
-                name: 'Google',
-                value: 341212,
-                icon: <Iconify icon="eva:google-fill" color="#DF3E30" width={32} />,
-              },
-              {
-                name: 'Linkedin',
-                value: 411213,
-                icon: <Iconify icon="eva:linkedin-fill" color="#006097" width={32} />,
-              },
-              {
-                name: 'Twitter',
-                value: 443232,
-                icon: <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={32} />,
-              },
-            ]}
-          />
-        </Grid>
+            <Scrollbar>
+              <TableContainer sx={{ overflow: 'unset' }}>
+                <Table sx={{ minWidth: 800 }}>
+                  <TripTableHead
+                    order={order}
+                    orderBy={orderBy}
+                    rowCount={trips.length}
+                    numSelected={selected.length}
+                    onRequestSort={handleSort}
+                    onSelectAllClick={handleSelectAllClick}
+                    headLabel={[
+                      { id: 'id', label: 'ID' },
+                      { id: 'from', label: 'Nereden' },
+                      { id: 'to', label: 'Nereye' },
+                      { id: 'department', label: 'Şube' },
+                      { id: 'passenger', label: 'Yolcu' },
+                      { id: 'status', label: 'Durum' },
+                    ]}
+                  />
+                  <TableBody>
+                    {dataFiltered
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => (
+                        <TripTableRow
+                          key={row.id}
+                          from={row.from}
+                          to={row.to}
+                          department={row.department}
+                          passenger={row.passenger}
+                          status={row.status}
+                          selected={selected.indexOf(row.id) !== -1}
+                          handleClick={(event) => handleClick(event, row.id)}
+                        />
+                      ))}
 
-        <Grid xs={12} md={6} lg={8}>
-          <AppTasks
-            title="İşlemler"
-            list={[
-              { id: '1', name: 'Create FireStone Logo' },
-              { id: '2', name: 'Add SCSS and JS files if required' },
-              { id: '3', name: 'Stakeholder Meeting' },
-              { id: '4', name: 'Scoping & Estimations' },
-              { id: '5', name: 'Sprint Showcase' },
-            ]}
-          />
-        </Grid>
+                    <TableEmptyRows
+                      height={77}
+                      emptyRows={emptyRows(page, rowsPerPage, trips.length)}
+                    />
+
+                    {notFound && <TableNoData query={filterName} />}
+                  </TableBody>
+
+                </Table>
+              </TableContainer>
+            </Scrollbar>
+
+            <TablePagination
+              page={page}
+              component="div"
+              count={trips.length}
+              rowsPerPage={rowsPerPage}
+              onPageChange={handleChangePage}
+              rowsPerPageOptions={[5, 10, 25]}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </Card>
+        </Container>
+
       </Grid>
     </Container>
   );
