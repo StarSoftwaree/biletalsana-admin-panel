@@ -140,6 +140,7 @@ export default function AppView() {
                       .map((row) => (
                         <TripTableRow
                           key={row.id}
+                          id={row.id}
                           from={row.from}
                           to={row.to}
                           department={row.department}

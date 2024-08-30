@@ -14,41 +14,73 @@ const navConfig = [
     title: 'ana sayfa',
     path: '/dashboard',
     icon: <HomeIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'biletler',
     path: '/tickets',
     icon: <TicketIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'kargolar',
     path: '/cargos',
     icon: <CargoIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'kasa',
     path: '/case',
     icon: <CaseIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'raporlar',
     path: '/reports',
     icon: <ReportsIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'seferler',
     path: '/trips',
     icon: <TripsIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'kullanıcılar',
     path: '/users',
     icon: <UsersIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
   {
     title: 'bilgilerim',
     path: '/user',
     icon: <UserInfoIcon />,
+    children: [
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
+    ],
   },
 ];
 
