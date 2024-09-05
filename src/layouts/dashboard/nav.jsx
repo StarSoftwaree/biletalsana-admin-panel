@@ -1,20 +1,25 @@
-import { useState } from 'react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
-import ListItemButton from '@mui/material/ListItemButton';
-import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
+import Drawer from '@mui/material/Drawer';
+import Avatar from '@mui/material/Avatar';
 import { alpha } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Typography from '@mui/material/Typography';
+import ListItemButton from '@mui/material/ListItemButton';
+
 import { usePathname } from '../../../src/routes/hooks';
 import { RouterLink } from '../../../src/routes/components';
-import Drawer from '@mui/material/Drawer';
-import { HEADER } from './config-layout';
+
 import { useResponsive } from '../../../src/hooks/use-responsive';
+
+import { account } from '../../../src/_mock/account';
+
 import Logo from '../../../src/components/logo';
 import Scrollbar from '../../../src/components/scrollbar';
 
+import { NAV } from './config-layout';
 import navConfig from './config-navigation';
 
 // ----------------------------------------------------------------------
@@ -31,48 +36,75 @@ export default function Nav({ openNav, onCloseNav }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  const renderAccount = (
+    <Box
+      sx={{
+        my: 3,
+        mx: 2.5,
+        py: 2,
+        px: 2.5,
+        display: 'flex',
+        borderRadius: 1.5,
+        alignItems: 'center',
+        bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
+      }}
+    >
+      <Avatar src={account.photoURL} alt="photoURL" />
+
+      <Box sx={{ ml: 2 }}>
+        <Typography variant="subtitle2">{account.displayName}</Typography>
+
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          {account.role}
+        </Typography>
+      </Box>
+    </Box>
+  );
+
   const renderMenu = (
-    <Stack component="nav" direction="row" spacing={0.5} sx={{ px: 2 }}>
+    <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {navConfig.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
     </Stack>
   );
-  
+
+
   const renderContent = (
     <Scrollbar
       sx={{
-        width: '100%',
+        height: 1,
         '& .simplebar-content': {
-          width: '100%',
+          height: 1,
           display: 'flex',
-          flexDirection: 'row',  // Yatay yapıya dönüştürüldü
+          flexDirection: 'column',
         },
       }}
     >
-      <Logo sx={{ mt: 3, ml: 4, mb: 2 }} />
-  
+      <Logo sx={{ mt: 3, ml: 4 }} />
+
+      {renderAccount}
+
       {renderMenu}
-  
+
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );
-  
+
   return (
     <Box
       sx={{
         flexShrink: { lg: 0 },
-        width: '100%',
-        height: HEADER.H_MOBILE,
+        width: { lg: NAV.WIDTH },
       }}
     >
       {upLg ? (
         <Box
           sx={{
-            height: HEADER.H_MOBILE,
+            height: 1,
             position: 'fixed',
-            width: '100%',
-            borderBottom: (theme) => `dashed 1px ${theme.palette.divider}`,
+            width: NAV.WIDTH,
+            borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
           }}
         >
           {renderContent}
@@ -83,7 +115,7 @@ export default function Nav({ openNav, onCloseNav }) {
           onClose={onCloseNav}
           PaperProps={{
             sx: {
-              width: '100%', // Drawer da tam genişlikte olmalı
+              width: NAV.WIDTH,
             },
           }}
         >
@@ -91,7 +123,7 @@ export default function Nav({ openNav, onCloseNav }) {
         </Drawer>
       )}
     </Box>
-  );  
+  );
 }
 
 Nav.propTypes = {
@@ -101,29 +133,15 @@ Nav.propTypes = {
 
 // ----------------------------------------------------------------------
 
-
-// ----------------------------------------------------------------------
-
 function NavItem({ item }) {
-  const [anchorEl, setAnchorEl] = useState(null);
   const pathname = usePathname();
+
   const active = item.path === pathname;
 
-  const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-  
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  
-  const open = Boolean(anchorEl);
-  
   return (
-    <>
       <ListItemButton
         component={RouterLink}
-        onClick={item.children ? handleClick : null}
+        href={item.path}
         sx={{
           minHeight: 44,
           borderRadius: 0.75,
@@ -141,42 +159,15 @@ function NavItem({ item }) {
           }),
         }}
       >
-        <Box component="span">{item.title}</Box>
-        {item.children && <ExpandMoreIcon sx={{ ml: 'auto' }} />}
-      </ListItemButton>
-  
-      {item.children && (
-        <Popover
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          sx={{
-            mt: 1,
-            ml: 0, 
-            p: 1,
-            boxShadow: (theme) => theme.shadows[3],
-          }}
-        >
-          <Stack spacing={0.5}>
-            {item.children.map((subItem) => (
-              <NavItem key={subItem.title} item={subItem} />
-            ))}
-          </Stack>
-        </Popover>
-      )}
-    </>
-  );  
+        <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+          {item.icon}
+        </Box>
+
+      <Box component="span">{item.title} </Box>
+            </ListItemButton>
+  );
 }
 
 NavItem.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
 };
-

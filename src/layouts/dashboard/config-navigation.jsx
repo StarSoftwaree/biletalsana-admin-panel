@@ -15,14 +15,7 @@ const navConfig = [
     path: '/dashboard',
     icon: <HomeIcon />,
     children: [
-      {
-        title: 'Overview',
-        path: '/dashboard/overview',
-        children: [
-          { title: 'Detailed Overview', path: '/dashboard/overview/detailed' },
-          { title: 'Quick Overview', path: '/dashboard/overview/quick' },
-        ],
-      },
+      { title: 'Overview', path: '/dashboard/overview' },
       { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
@@ -31,8 +24,8 @@ const navConfig = [
     path: '/tickets',
     icon: <TicketIcon />,
     children: [
-      { title: 'All Tickets', path: '/tickets/all' },
-      { title: 'Pending Tickets', path: '/tickets/pending' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -40,8 +33,8 @@ const navConfig = [
     path: '/cargos',
     icon: <CargoIcon />,
     children: [
-      { title: 'Cargo Status', path: '/cargos/status' },
-      { title: 'Cargo History', path: '/cargos/history' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -49,8 +42,8 @@ const navConfig = [
     path: '/case',
     icon: <CaseIcon />,
     children: [
-      { title: 'Current Balance', path: '/case/balance' },
-      { title: 'Transaction History', path: '/case/transactions' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -58,8 +51,8 @@ const navConfig = [
     path: '/reports',
     icon: <ReportsIcon />,
     children: [
-      { title: 'Sales Reports', path: '/reports/sales' },
-      { title: 'User Reports', path: '/reports/users' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -67,8 +60,8 @@ const navConfig = [
     path: '/trips',
     icon: <TripsIcon />,
     children: [
-      { title: 'Upcoming Trips', path: '/trips/upcoming' },
-      { title: 'Past Trips', path: '/trips/past' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -76,8 +69,8 @@ const navConfig = [
     path: '/users',
     icon: <UsersIcon />,
     children: [
-      { title: 'User List', path: '/users/list' },
-      { title: 'User Roles', path: '/users/roles' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
   {
@@ -85,8 +78,8 @@ const navConfig = [
     path: '/user',
     icon: <UserInfoIcon />,
     children: [
-      { title: 'Profile', path: '/user/profile' },
-      { title: 'Settings', path: '/user/settings' },
+      { title: 'Overview', path: '/dashboard/overview' },
+      { title: 'Analytics', path: '/dashboard/analytics' },
     ],
   },
 ];
