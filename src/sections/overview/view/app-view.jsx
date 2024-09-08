@@ -1,16 +1,11 @@
 import { useState } from 'react';
 
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
-import Button from '@mui/material/Button';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import Iconify from '../../../../src/components/iconify';
 
 import { trips } from '../../../../src/_mock/trips';
 
@@ -96,18 +91,7 @@ export default function AppView() {
 
   const notFound = !dataFiltered.length && !!filterName;
   return (
-    <Container maxWidth="xl" >
-      <Grid container spacing={3}>
-
-        <Container>
-          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-            <Typography variant="h4">Yolculuklar</Typography>
-
-            <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-              Yeni Yolcu Ekle
-            </Button>
-          </Stack>
-
+    <Container>
           <Card>
             <TripTableToolbar
               numSelected={selected.length}
@@ -173,9 +157,6 @@ export default function AppView() {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Card>
-        </Container>
-
-      </Grid>
     </Container>
   );
 }

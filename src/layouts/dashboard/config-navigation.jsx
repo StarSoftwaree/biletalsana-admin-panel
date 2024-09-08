@@ -11,7 +11,7 @@ import UserInfoIcon from '@mui/icons-material/Person';
 
 const navConfig = [
   {
-    title: 'ana sayfa',
+    title: 'Ana Sayfa',
     path: '/dashboard',
     icon: <HomeIcon />,
     children: [
@@ -20,7 +20,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'biletler',
+    title: 'Biletler',
     path: '/tickets',
     icon: <TicketIcon />,
     children: [
@@ -29,7 +29,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'kargolar',
+    title: 'Kargolar',
     path: '/cargos',
     icon: <CargoIcon />,
     children: [
@@ -38,7 +38,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'kasa',
+    title: 'Kasa',
     path: '/case',
     icon: <CaseIcon />,
     children: [
@@ -47,7 +47,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'raporlar',
+    title: 'Raporlar',
     path: '/reports',
     icon: <ReportsIcon />,
     children: [
@@ -56,7 +56,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'seferler',
+    title: 'Seferler',
     path: '/trips',
     icon: <TripsIcon />,
     children: [
@@ -65,7 +65,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'kullanıcılar',
+    title: 'Kullanıcılar',
     path: '/users',
     icon: <UsersIcon />,
     children: [
@@ -74,7 +74,7 @@ const navConfig = [
     ],
   },
   {
-    title: 'bilgilerim',
+    title: 'Bilgilerim',
     path: '/user',
     icon: <UserInfoIcon />,
     children: [
