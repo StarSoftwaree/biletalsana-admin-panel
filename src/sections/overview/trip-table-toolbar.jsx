@@ -15,10 +15,10 @@ export default function TripTableToolbar({ numSelected, filterName, onFilterName
   return (
     <Toolbar
       sx={{
-        height: 96,
+        height: 80,
         display: 'flex',
         justifyContent: 'space-between',
-        p: (theme) => theme.spacing(0, 1, 0, 3),
+        p: (theme) => theme.spacing(0, 1, 0, 1),
         ...(numSelected > 0 && {
           color: 'primary.main',
           bgcolor: 'primary.lighter',
@@ -38,7 +38,7 @@ export default function TripTableToolbar({ numSelected, filterName, onFilterName
             <InputAdornment position="start">
               <Iconify
                 icon="eva:search-fill"
-                sx={{ color: 'text.disabled', width: 20, height: 20 }}
+                sx={{ color: 'text.disabled', width: 20, height: 15 }}
               />
             </InputAdornment>
           }

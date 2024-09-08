@@ -69,7 +69,10 @@ Nav.propTypes = {
 
 // ----------------------------------------------------------------------
 
+import { useState } from 'react';
+
 function NavItem({ item }) {
+  const [hover, setHover] = useState(false);
   const pathname = usePathname();
   const active = item.path === pathname;
 
@@ -78,8 +81,10 @@ function NavItem({ item }) {
       component={RouterLink}
       href={item.path}
       sx={{
-        display: 'flex',      
-        alignItems: 'center', 
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
         px: 2,
         py: 1,
         textDecoration: 'none',
@@ -89,11 +94,51 @@ function NavItem({ item }) {
           color: 'primary.main',
         },
       }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
-      <Box sx={{ mr: 1 }}> 
+      <Box sx={{ mr: 1 }}>
         {item.icon}
       </Box>
       {item.title}
+      
+      {/* Submenu */}
+      {item.children && hover && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            backgroundColor: 'background.paper',
+            boxShadow: 2,
+            mt: 1,
+            zIndex: 1000,
+            minWidth: 200,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {item.children.map((subItem, index) => (
+            <Box
+              key={index}
+              component={RouterLink}
+              href={subItem.path}
+              sx={{
+                px: 2,
+                py: 1,
+                textDecoration: 'none',
+                color: 'text.primary',
+                '&:hover': {
+                  backgroundColor: 'action.hover',
+                },
+              }}
+            >
+              {subItem.icon && <Box sx={{ mr: 1 }}>{subItem.icon}</Box>}
+              {subItem.title}
+            </Box>
+          ))}
+        </Box>
+      )}
     </Box>
   );
 }

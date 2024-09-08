@@ -101,7 +101,7 @@ export default function AppView() {
 
             <Scrollbar>
               <TableContainer sx={{ overflow: 'unset' }}>
-                <Table sx={{ minWidth: 800 }}>
+                <Table >
                   <TripTableHead
                     order={order}
                     orderBy={orderBy}

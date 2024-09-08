@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 // ----------------------------------------------------------------------
 
 export const trips = [...Array(24)].map(() => ({
-    id: faker.string.uuid(),
+    id: faker.string.uuid().slice(0, 7),
     from: sample(['Adana',
         'Adıyaman',
         'Afyonkarahisar',

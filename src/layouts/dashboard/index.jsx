@@ -5,7 +5,7 @@ import Nav from './nav';
 import Main from './main';
 import LeftSidebar from './left-sidebar'; 
 import RightSidebar from './right-sidebar';
-import MiddleSidebar from '../middle-sidebar';
+import MiddleSidebar from './middle-sidebar';
 
 export default function DashboardLayout({ children }) {
   return (
