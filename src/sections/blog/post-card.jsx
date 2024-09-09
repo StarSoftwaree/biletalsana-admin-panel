@@ -6,7 +6,6 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { alpha } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { fDate } from '../../../src/utils/format-time';
@@ -149,7 +148,6 @@ export default function PostCard({ post, index }) {
   );
 
   return (
-    <Grid xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card>
         <Box
           sx={{
@@ -198,7 +196,6 @@ export default function PostCard({ post, index }) {
           {renderInfo}
         </Box>
       </Card>
-    </Grid>
   );
 }
 

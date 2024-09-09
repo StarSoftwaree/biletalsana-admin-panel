@@ -1,7 +1,6 @@
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { posts } from '../../../../src/_mock/blog';
@@ -36,11 +35,9 @@ export default function BlogView() {
         />
       </Stack>
 
-      <Grid container spacing={3}>
         {posts.map((post, index) => (
           <PostCard key={post.id} post={post} index={index} />
         ))}
-      </Grid>
     </Container>
   );
 }
