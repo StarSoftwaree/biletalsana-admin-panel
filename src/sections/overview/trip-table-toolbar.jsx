@@ -31,6 +31,7 @@ export default function TripTableToolbar({ numSelected, filterName, onFilterName
         </Typography>
       ) : (
         <OutlinedInput
+        sx={{paddingY: 0}}
           value={filterName}
           onChange={onFilterName}
           placeholder="Yolculuk ara..."

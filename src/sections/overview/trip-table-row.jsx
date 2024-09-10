@@ -36,13 +36,13 @@ export default function TripTableRow({
 
   return (
     <>
-      <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell padding="checkbox">
+      <TableRow sx={{innerHeight: 12}} hover tabIndex={-1} role="checkbox" selected={selected}>
+        <TableCell padding="0">
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
         </TableCell>
 
         <TableCell component="th" scope="row" padding="none">
-          <Stack direction="row" alignItems="center" spacing={2}>
+          <Stack direction="row" alignItems="center" spacing={0}>
             <Typography variant="subtitle2" noWrap>
               {id}
             </Typography>

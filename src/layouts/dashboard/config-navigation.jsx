@@ -1,4 +1,3 @@
-import HomeIcon from '@mui/icons-material/Home';
 import TicketIcon from '@mui/icons-material/ConfirmationNumber';
 import CargoIcon from '@mui/icons-material/LocalShipping';
 import CaseIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -6,26 +5,20 @@ import ReportsIcon from '@mui/icons-material/BarChart';
 import TripsIcon from '@mui/icons-material/DirectionsBus';
 import UsersIcon from '@mui/icons-material/People';
 import UserInfoIcon from '@mui/icons-material/Person';
+import FleetIcon from '@mui/icons-material/DirectionsCar';
+import ManagementIcon from '@mui/icons-material/Business';
+import AnnouncementsIcon from '@mui/icons-material/Campaign';
 
 // ----------------------------------------------------------------------
 
 const navConfig = [
   {
-    title: 'Ana Sayfa',
-    path: '/dashboard',
-    icon: <HomeIcon />,
-    children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
-    ],
-  },
-  {
     title: 'Biletler',
     path: '/tickets',
     icon: <TicketIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Tüm Biletler', path: '/tickets/all' },
+      { title: 'Satın Alınanlar', path: '/tickets/purchased' },
     ],
   },
   {
@@ -33,8 +26,8 @@ const navConfig = [
     path: '/cargos',
     icon: <CargoIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Tüm Kargolar', path: '/cargos/all' },
+      { title: 'Teslim Edilenler', path: '/cargos/delivered' },
     ],
   },
   {
@@ -42,8 +35,8 @@ const navConfig = [
     path: '/case',
     icon: <CaseIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Kasa İşlemleri', path: '/case/transactions' },
+      { title: 'Günlük Kasa', path: '/case/daily' },
     ],
   },
   {
@@ -51,8 +44,17 @@ const navConfig = [
     path: '/reports',
     icon: <ReportsIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Satış Raporları', path: '/reports/sales' },
+      { title: 'Gelir Raporları', path: '/reports/revenue' },
+    ],
+  },
+  {
+    title: 'Müşteriler',
+    path: '/customers',
+    icon: <UsersIcon />,
+    children: [
+      { title: 'Tüm Müşteriler', path: '/customers/all' },
+      { title: 'Sadık Müşteriler', path: '/customers/loyal' },
     ],
   },
   {
@@ -60,17 +62,26 @@ const navConfig = [
     path: '/trips',
     icon: <TripsIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Günlük Seferler', path: '/trips/daily' },
+      { title: 'Geçmiş Seferler', path: '/trips/past' },
     ],
   },
   {
-    title: 'Kullanıcılar',
-    path: '/users',
-    icon: <UsersIcon />,
+    title: 'Filo',
+    path: '/fleet',
+    icon: <FleetIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Araçlar', path: '/fleet/vehicles' },
+      { title: 'Bakım Raporları', path: '/fleet/maintenance' },
+    ],
+  },
+  {
+    title: 'Yönetim',
+    path: '/management',
+    icon: <ManagementIcon />,
+    children: [
+      { title: 'Kullanıcı Yönetimi', path: '/management/users' },
+      { title: 'Yetkiler', path: '/management/permissions' },
     ],
   },
   {
@@ -78,9 +89,14 @@ const navConfig = [
     path: '/user',
     icon: <UserInfoIcon />,
     children: [
-      { title: 'Overview', path: '/dashboard/overview' },
-      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Kişisel Bilgiler', path: '/user/profile' },
+      { title: 'Hesap Ayarları', path: '/user/settings' },
     ],
+  },
+  {
+    title: 'Duyurular',
+    path: '/announcements',
+    icon: <AnnouncementsIcon />,
   },
 ];
 

@@ -4,9 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
-import CardActions from '@mui/material/CardActions';
 import { grey } from '../../theme/palette';
 
 const data = [
@@ -41,28 +39,23 @@ function MiddleSidebar() {
       </Typography>
       <List>
         {data.map((item, index) => (
-          <ListItem key={index} sx={{ display: 'flex', flexDirection: 'column', mb: 1 }}>
-            <Card sx={{ maxWidth: 345, backgroundColor: grey }}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+          <ListItem key={index} sx={{ display: 'flex', flexDirection: 'column', margin: 0, paddingX: 0 }}>
+            <Card sx={{ backgroundColor: grey, width: 200 }}>
+              <CardActionArea sx={{ padding: 0 }}>
+                <CardContent >
+                  <Typography gutterBottom variant="h6" component="div" fontSize={12}>
                     {item.day}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="body2" fontSize={12}>
                     Kalkış: {item.departure} <br />
                     Kalkış Yeri: {item.departurePlace}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="body2" fontSize={12}>
                     Varış: {item.landing} <br />
                     Varış Yeri: {item.destination}
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Detay
-                </Button>
-              </CardActions>
             </Card>
           </ListItem>
         ))}

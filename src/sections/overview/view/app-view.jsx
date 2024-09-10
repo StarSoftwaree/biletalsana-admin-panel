@@ -32,7 +32,7 @@ export default function AppView() {
 
   const [filterName, setFilterName] = useState('');
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -136,7 +136,7 @@ export default function AppView() {
                       ))}
 
                     <TableEmptyRows
-                      height={77}
+                      height={60}
                       emptyRows={emptyRows(page, rowsPerPage, trips.length)}
                     />
 

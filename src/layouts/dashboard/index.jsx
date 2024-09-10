@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }) {
           flexDirection: 'column',
         }}
       >
-        <Box sx={{ flexShrink: 0, height: 64 }}> 
+        <Box sx={{ flexShrink: 0, height: 48 }}> 
           <Nav />
         </Box>
 

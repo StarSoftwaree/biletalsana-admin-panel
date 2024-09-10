@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -21,13 +22,13 @@ export default function Nav() {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        px: 2,
+        px: 1, // Reduced padding
       }}
     >
-      <Avatar src={account.photoURL} alt="photoURL" />
-      <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+      <Avatar src={account.photoURL} alt="photoURL" sx={{ width: 32, height: 32 }} /> {/* Reduced Avatar size */}
+      <Box sx={{ ml: 1 }}> {/* Reduced margin */}
+        <Typography variant="subtitle2" sx={{ fontSize: 14 }}>{account.displayName}</Typography> {/* Smaller text */}
+        <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: 12 }}>
           {account.role}
         </Typography>
       </Box>
@@ -35,7 +36,7 @@ export default function Nav() {
   );
 
   const renderMenu = (
-    <Stack direction="row" spacing={2} sx={{ px: 2 }}>
+    <Stack direction="row" spacing={1} sx={{ px: 1 }}> {/* Reduced spacing and padding */}
       {navConfig.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
@@ -53,23 +54,14 @@ export default function Nav() {
         boxShadow: (theme) => `0px 2px 8px ${alpha(theme.palette.grey[900], 0.1)}`,
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 1 }}>
-        <Logo sx={{ ml: 2 }} />
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 0.5 }}> {/* Reduced padding */}
+        <Logo sx={{ ml: 1 }} /> {/* Reduced margin */}
         {renderMenu}
         {renderAccount}
       </Box>
     </Box>
   );
 }
-
-Nav.propTypes = {
-  openNav: PropTypes.bool,
-  onCloseNav: PropTypes.func,
-};
-
-// ----------------------------------------------------------------------
-
-import { useState } from 'react';
 
 function NavItem({ item }) {
   const [hover, setHover] = useState(false);
@@ -85,10 +77,11 @@ function NavItem({ item }) {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        px: 2,
-        py: 1,
+        px: 1, 
+        py: 0.5, 
         textDecoration: 'none',
         color: active ? 'primary.main' : 'text.secondary',
+        fontSize: 14, 
         fontWeight: active ? 'fontWeightBold' : 'fontWeightMedium',
         '&:hover': {
           color: 'primary.main',
@@ -97,12 +90,11 @@ function NavItem({ item }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Box sx={{ mr: 1 }}>
+      <Box sx={{ mr: 0.5 }}>
         {item.icon}
       </Box>
       {item.title}
       
-      {/* Submenu */}
       {item.children && hover && (
         <Box
           sx={{
@@ -111,9 +103,9 @@ function NavItem({ item }) {
             left: 0,
             backgroundColor: 'background.paper',
             boxShadow: 2,
-            mt: 1,
+            mt: 0.5, 
             zIndex: 1000,
-            minWidth: 200,
+            minWidth: 160, 
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -124,16 +116,17 @@ function NavItem({ item }) {
               component={RouterLink}
               href={subItem.path}
               sx={{
-                px: 2,
-                py: 1,
+                px: 1,
+                py: 0.5, 
                 textDecoration: 'none',
+                fontSize: 13, 
                 color: 'text.primary',
                 '&:hover': {
                   backgroundColor: 'action.hover',
                 },
               }}
             >
-              {subItem.icon && <Box sx={{ mr: 1 }}>{subItem.icon}</Box>}
+              {subItem.icon && <Box sx={{ mr: 0.5 }}>{subItem.icon}</Box>} 
               {subItem.title}
             </Box>
           ))}
@@ -142,6 +135,7 @@ function NavItem({ item }) {
     </Box>
   );
 }
+
 
 NavItem.propTypes = {
   item: PropTypes.object,

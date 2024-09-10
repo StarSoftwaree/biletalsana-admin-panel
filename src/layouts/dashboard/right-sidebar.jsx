@@ -11,7 +11,7 @@ export default function RightSidebar() {
     <Box
       sx={{
         width: 240,
-        bgcolor: 'background.paper', 
+        bgcolor: 'background.paper',
         borderLeft: '1px solid',
         borderColor: 'divider',
         p: 2,
@@ -20,11 +20,11 @@ export default function RightSidebar() {
         alignItems: 'center',
       }}
     >
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar sx={{
-                width: 220,
-      }} />
-    </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateCalendar sx={{
+          width: 200, mr: 1
+        }} />
+      </LocalizationProvider>
 
       <Button variant="contained" sx={{ mt: 2, width: '100%' }}>
         Bugün
