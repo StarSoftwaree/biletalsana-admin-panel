@@ -43,16 +43,14 @@ function MiddleSidebar() {
             <Card sx={{ backgroundColor: grey, width: 200 }}>
               <CardActionArea sx={{ padding: 0 }}>
                 <CardContent >
-                  <Typography gutterBottom variant="h6" component="div" fontSize={12}>
+                  <Typography fontWeight={'fontWeightBold'} variant="body2" component="div" fontSize={12}>
                     {item.day}
                   </Typography>
                   <Typography variant="body2" fontSize={12}>
-                    Kalkış: {item.departure} <br />
-                    Kalkış Yeri: {item.departurePlace}
+                    Kalkış: {item.departure} - {item.departurePlace}
                   </Typography>
                   <Typography variant="body2" fontSize={12}>
-                    Varış: {item.landing} <br />
-                    Varış Yeri: {item.destination}
+                    Varış: {item.landing} - {item.destination}
                   </Typography>
                 </CardContent>
               </CardActionArea>

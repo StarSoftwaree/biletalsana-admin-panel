@@ -3,37 +3,39 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
-export default function LeftSidebar() {
-  // Define seat data (1 = male, 2 = female, 3 = window, 0 = empty)
-  const seats = [
-    [1, 2, 3],
-    [1, 0, 2],
-    [1, 0, 2],
-    [1, 0, 2],
-    [1, 0, 2],
-    [1, 0, 2],
-    [1, 0, 2],
-    [0, 0, 0],
-    [1, 2, 0],
-  ];
+const busSeatLayout = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [10, 11, 12],
+  [13, 14, 15],
+  [16, 17, 18],
+  [19, 20, 21],
+  [22, 23, 24],
+  [25, 26, 27],
+  [28, 29, 30],
+  [31, 32, 33],
+  [34, 35, 36],
+  [37, 38, 39],
+  [40, 0, 41], // Handle empty seat (seat 40) with a placeholder
+];
 
-  // Seat button rendering logic based on seat type
-  const renderSeat = (seat) => {
-    if (seat === 1) {
-      return <Button variant="contained" sx={{ bgcolor: '#006994', color: '#fff' }}>M</Button>;
-    } else if (seat === 2) {
-      return <Button variant="contained" sx={{ bgcolor: '#D90076', color: '#fff' }}>F</Button>;
-    } else if (seat === 3) {
-      return <Button variant="contained" sx={{ bgcolor: '#009ACD', color: '#fff' }}>W</Button>;
-    } else {
-      return <Box sx={{ width: '40px', height: '40px' }} />;
-    }
-  };
+const renderSeat = (seatNumber, isEmpty) => {
+  if (isEmpty) {
+    return <Box sx={{ width: '24px', height: '24px' }} />; // Placeholder for empty seat
+  }
+  return (
+    <Button variant="contained" sx={{ bgcolor: '#FFF', color: '#000' }}>
+      {seatNumber}
+    </Button>
+  );
+};
 
+function LeftSidebar() {
   return (
     <Box
       sx={{
-        width: 240,
+        width: 260,
         bgcolor: 'background.paper',
         borderRight: '1px solid',
         borderColor: 'divider',
@@ -43,13 +45,12 @@ export default function LeftSidebar() {
       <Typography variant="h6" gutterBottom>
         Otobüs Koltukları
       </Typography>
-      {/* Seat Layout */}
       <Grid container spacing={1} justifyContent="center">
-        {seats.map((row, rowIndex) => (
+        {busSeatLayout.map((row, rowIndex) => (
           <Grid container item spacing={1} key={rowIndex} justifyContent="center">
             {row.map((seat, seatIndex) => (
               <Grid item key={seatIndex}>
-                {renderSeat(seat)}
+                {renderSeat(seat, seat === 0)}
               </Grid>
             ))}
           </Grid>
@@ -58,3 +59,5 @@ export default function LeftSidebar() {
     </Box>
   );
 }
+
+export default LeftSidebar;

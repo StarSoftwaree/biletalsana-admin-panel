@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Popover from '@mui/material/Popover';
 import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
@@ -15,14 +14,12 @@ import Iconify from '../../../src/components/iconify';
 // ----------------------------------------------------------------------
 
 export default function TripTableRow({
-  selected,
   id,
   from,
   to,
   department,
   passenger,
   status,
-  handleClick,
 }) {
   const [open, setOpen] = useState(null);
 
@@ -36,14 +33,10 @@ export default function TripTableRow({
 
   return (
     <>
-      <TableRow sx={{innerHeight: 12}} hover tabIndex={-1} role="checkbox" selected={selected}>
-        <TableCell padding="0">
-          <Checkbox disableRipple checked={selected} onChange={handleClick} />
-        </TableCell>
-
+      <TableRow hover tabIndex={-1}>
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={0}>
-            <Typography variant="subtitle2" noWrap>
+            <Typography sx={{ ml: 2 }} variant="subtitle2" noWrap>
               {id}
             </Typography>
           </Stack>
@@ -77,7 +70,7 @@ export default function TripTableRow({
         </MenuItem>
 
         <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
-          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
+          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2, fontSize: '0.875rem' }} />
           Delete
         </MenuItem>
       </Popover>
@@ -92,6 +85,5 @@ TripTableRow.propTypes = {
   department: PropTypes.string.isRequired,
   passenger: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  selected: PropTypes.bool,
   handleClick: PropTypes.func,
 };

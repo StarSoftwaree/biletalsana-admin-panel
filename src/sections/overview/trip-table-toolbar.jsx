@@ -15,7 +15,7 @@ export default function TripTableToolbar({ numSelected, filterName, onFilterName
   return (
     <Toolbar
       sx={{
-        height: 80,
+        height: 60,
         display: 'flex',
         justifyContent: 'space-between',
         p: (theme) => theme.spacing(0, 1, 0, 1),
@@ -31,19 +31,20 @@ export default function TripTableToolbar({ numSelected, filterName, onFilterName
         </Typography>
       ) : (
         <OutlinedInput
-        sx={{paddingY: 0}}
           value={filterName}
           onChange={onFilterName}
           placeholder="Yolculuk ara..."
+          size="small" 
           startAdornment={
             <InputAdornment position="start">
               <Iconify
                 icon="eva:search-fill"
-                sx={{ color: 'text.disabled', width: 20, height: 15 }}
+                sx={{ color: 'text.disabled', width: 16, height: 16 }} 
               />
             </InputAdornment>
           }
         />
+
       )}
 
       {numSelected > 0 ? (

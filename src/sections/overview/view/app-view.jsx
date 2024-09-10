@@ -26,8 +26,6 @@ export default function AppView() {
 
   const [order, setOrder] = useState('asc');
 
-  const [selected, setSelected] = useState([]);
-
   const [orderBy, setOrderBy] = useState('name');
 
   const [filterName, setFilterName] = useState('');
@@ -40,33 +38,6 @@ export default function AppView() {
       setOrder(isAsc ? 'desc' : 'asc');
       setOrderBy(id);
     }
-  };
-
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = trips.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -94,7 +65,6 @@ export default function AppView() {
     <Container>
           <Card>
             <TripTableToolbar
-              numSelected={selected.length}
               filterName={filterName}
               onFilterName={handleFilterByName}
             />
@@ -106,9 +76,7 @@ export default function AppView() {
                     order={order}
                     orderBy={orderBy}
                     rowCount={trips.length}
-                    numSelected={selected.length}
                     onRequestSort={handleSort}
-                    onSelectAllClick={handleSelectAllClick}
                     headLabel={[
                       { id: 'id', label: 'ID' },
                       { id: 'from', label: 'Nereden' },
@@ -130,8 +98,6 @@ export default function AppView() {
                           department={row.department}
                           passenger={row.passenger}
                           status={row.status}
-                          selected={selected.indexOf(row.id) !== -1}
-                          handleClick={(event) => handleClick(event, row.id)}
                         />
                       ))}
 

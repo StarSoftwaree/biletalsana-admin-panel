@@ -53,22 +53,8 @@ export default function RightSidebar() {
         Öz Has Bingöl
       </Typography>
       <Typography variant="body2">
-        ELAZIĞ: GEÇİCİ
+        ELAZIĞ GEÇİCİ
       </Typography>
-      <Typography variant="body2" sx={{ mt: 1 }}>
-        IP adresi: 193.255.125.65
-      </Typography>
-
-      <Typography variant="body2" sx={{ mt: 2 }}>
-        ORS Teknik Destek Hattı: 0212 963 01 02
-      </Typography>
-      <Typography variant="body2">
-        obilet.com çağrı merkezi:
-      </Typography>
-
-      <Button variant="contained" color="error" sx={{ mt: 2 }}>
-        Canlı Destek
-      </Button>
     </Box>
   );
 }
